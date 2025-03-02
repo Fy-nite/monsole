@@ -1,0 +1,9 @@
+lbl strings
+    
+    db $100 ":3 " 
+    db $200 "ls"
+    db $300 "exit" 
+    db $400 "echo" 
+    db $500 "Command not found\n"
+    db $600 "Exiting shell...\n" 
+    ret ; return to caller

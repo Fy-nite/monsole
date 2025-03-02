@@ -1,0 +1,23 @@
+lbl ls  
+    db $3000 "you said ls\n" ; response
+    mov RAX 1
+    mov RBX 3000
+    call #printf
+    ret
+
+lbl echo
+    db $3010 "Enter text to echo: " ; prompt for echo
+    mov RAX 1
+    mov RBX 3010
+    call #printf
+    
+    ; Read input to echo
+    in 1 $3020
+    
+    ; Echo the input
+    mov RAX 1
+    mov RBX 3020
+    call #printf
+    ret
+
+; Add more commands here as needed

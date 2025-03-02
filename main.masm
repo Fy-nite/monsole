@@ -1,0 +1,45 @@
+#include "strings"
+#include "commands"
+#include "stdio.io"
+
+lbl main
+    call #strings
+    
+lbl shell_loop
+    ; Display prompt
+    mov RAX 1
+    mov RBX 100
+    call #printf
+    
+    ; Read command from user
+    in 1 $1000
+    
+    ; Check if command is "exit"
+    MNI StringOperations.cmp 300 1000
+    je #exit_shell #check_command
+    
+    ; Check which command was entered
+lbl check_command
+    MNI StringOperations.cmp 200 1000
+    je #execute_ls #command_not_found
+    
+    MNI StringOperations.cmp 400 1000
+    je #execute_echo #command_not_found
+    
+lbl command_not_found
+    mov RAX 1
+    mov RBX 500
+    call #printf
+    jmp #shell_loop
+    
+lbl execute_ls
+    call #ls
+    jmp #shell_loop
+    
+lbl execute_echo
+    call #echo
+    jmp #shell_loop
+    
+lbl exit_shell
+    out 1 $600
+    hlt
