@@ -1,0 +1,7 @@
+; Helper function to parse arguments
+lbl parse_args
+    db $4000 " " ; space separator
+    mov R0 1000 ; Command string address
+    mov R1 4000 ; Space separator
+    MNI StringOperations.split R0 R1 $5000 ; Split result into array at $5000
+    ret
