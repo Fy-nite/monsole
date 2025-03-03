@@ -16,22 +16,31 @@ lbl shell_loop
     
     ; Check if command is "exit"
     MNI StringOperations.cmp 300 1000
-    je #exit_shell #check_command
+    je #exit_shell 
     
     ; Check which command was entered
 lbl check_command
     MNI StringOperations.cmp 200 1000
-    je #execute_ls #command_not_found
+    je #execute_ls
     
+lbl check_echo
     MNI StringOperations.cmp 400 1000
-    je #execute_echo #command_not_found
+    je #execute_echo 
+
+lbl check_clear
+    MNI StringOperations.cmp 500 1000
+    je #execute_clear 
     
 lbl command_not_found
     mov RAX 1
-    mov RBX 500
+    mov RBX 3456  ; Use the correct address for "Command not found"
     call #printf
     jmp #shell_loop
     
+lbl execute_clear
+    call #clear
+    jmp #shell_loop
+
 lbl execute_ls
     call #ls
     jmp #shell_loop
@@ -41,5 +50,5 @@ lbl execute_echo
     jmp #shell_loop
     
 lbl exit_shell
-    out 1 $600
+    out 1 $3000  ; Use the correct address for "Exiting shell..."
     hlt

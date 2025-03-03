@@ -1,23 +1,34 @@
 lbl ls  
-    db $3000 "you said ls\n" ; response
+    db $3010 "you said ls\n"
     mov RAX 1
-    mov RBX 3000
+    mov RBX 3020
     call #printf
     ret
 
 lbl echo
-    db $3010 "Enter text to echo: " ; prompt for echo
+    db $3010 "Enter text to echo: " 
+    ; prompt for echo
     mov RAX 1
     mov RBX 3010
     call #printf
     
     ; Read input to echo
     in 1 $3020
-    
+
     ; Echo the input
     mov RAX 1
     mov RBX 3020
     call #printf
+    ;; print for new line
+    mov RBX 10
+    call #printchar
     ret
-
-; Add more commands here as needed
+lbl clear
+    mov RAX 1
+    ;; move the clear string to RBX
+    DB $1500 "[clear]"
+    mov RBX 1500
+    ;; call the IO.write function that will write the clear string to the terminal without any bs or newlines
+    MNI IO.write RAX RBX 
+    MNI IO.flush RAX RBX
+    ret

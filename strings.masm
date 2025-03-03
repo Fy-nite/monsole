@@ -4,6 +4,7 @@ lbl strings
     db $200 "ls"
     db $300 "exit" 
     db $400 "echo" 
-    db $500 "Command not found\n"
-    db $600 "Exiting shell...\n" 
+    db $500 "clear"
+    db $3456 "Command not found\n"
+    db $3000 "Exiting shell...\n" 
     ret ; return to caller
