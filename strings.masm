@@ -1,10 +1,10 @@
 lbl strings
     
     db $100 ":3 " 
-    db $200 "ls"
-    db $300 "exit" 
-    db $400 "echo" 
-    db $500 "clear"
+    db $110 "ls"
+    db $120 "exit" 
+    db $130 "echo" 
+    db $140 "clear"
     db $3456 "Command not found\n"
     db $3000 "Exiting shell...\n" 
     ret ; return to caller

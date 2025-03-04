@@ -32,3 +32,8 @@ lbl clear
     MNI IO.write RAX RBX 
     MNI IO.flush RAX RBX
     ret
+
+
+lbl help
+    db $100 "Monsole V1.0.0\n"
+    call #
