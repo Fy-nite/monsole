@@ -1,4 +1,4 @@
-# Micro Assembly Shell (mel)
+# Micro Assembly Shell (monsole)
 
 Welcome to the Micro Assembly powered shell!
 
