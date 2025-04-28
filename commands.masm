@@ -1,27 +1,20 @@
 lbl ls  
     db $3010 "you said ls\n"
-    mov RAX 1
-    mov RBX 3020
-    call #printf
+    out 1 $3010
     ret
 
 lbl echo
-    db $3010 "Enter text to echo: " 
+    db $3030 "Enter text to echo: " 
     ; prompt for echo
-    mov RAX 1
-    mov RBX 3010
-    call #printf
+    out 1 $3030
     
     ; Read input to echo
-    in 1 $3020
+    in $3020
 
     ; Echo the input
-    mov RAX 1
-    mov RBX 3020
-    call #printf
+    out 1 $3020
     ;; print for new line
-    mov RBX 10
-    call #printchar
+    cout 1 10
     ret
 lbl clear
     mov RAX 1
@@ -36,4 +29,3 @@ lbl clear
 
 lbl help
     db $100 "Monsole V1.0.0\n"
-    call #
